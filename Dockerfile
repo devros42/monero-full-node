@@ -1,4 +1,4 @@
-# Usage: docker run --restart=always -v /var/data/blockchain-xmr:/root/.bitmonero -p 18080:18080 -p 18081:18081 --name=monerod -td kannix/monero-full-node
+# Usage: docker run --restart=always -v /var/data/blockchain-xmr:/home/monero/.bitmonero -p 18080:18080 -p 18081:18081 -p 18089:18089 --name=monero-full-node -v /mnt/cache/appdata/monero-node:/usr/local -td devros42/monero-full-node
 FROM ubuntu:18.04 AS build
 
 ENV MONERO_VERSION=0.18.1.0 MONERO_SHA256=9318e522a5cf95bc856772f15d7507fdef2c028e01f70d020078ad5e208f1304
@@ -26,8 +26,10 @@ COPY --chown=monero:monero --from=build /root/monerod /home/monero/monerod
 # blockchain location
 VOLUME /home/monero/.bitmonero
 
-EXPOSE 18080 18081
+EXPOSE 18080 18081 18089
 
 
 ENTRYPOINT ["./monerod"]
-CMD ["--non-interactive", "--restricted-rpc", "--rpc-bind-ip=0.0.0.0", "--confirm-external-bind", "--enable-dns-blocklist", "--out-peers=16"]
+CMD ["--config-file=/usr/local/monerod.conf", "--non-interactive"]
+
+

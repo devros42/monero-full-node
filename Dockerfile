@@ -1,8 +1,10 @@
 # Usage: docker run --restart=always -v /var/data/blockchain-xmr:/home/monero/.bitmonero -p 18080:18080 -p 18081:18081 -p 18089:18089 --name=monero-full-node -v /mnt/cache/appdata/monero-node:/usr/local -td devros42/monero-full-node
-FROM ubuntu:18.04 AS build
 
-ENV MONERO_VERSION=0.18.1.0 MONERO_SHA256=9318e522a5cf95bc856772f15d7507fdef2c028e01f70d020078ad5e208f1304
-
+FROM --platform=linux/amd64 ubuntu:22.04 AS build
+LABEL author="devros42" \
+      maintainer="devros42"
+      
+ENV MONERO_VERSION=0.18.1.2 MONERO_SHA256=7d51e7072351f65d0c7909e745827cfd3b00abe5e7c4cc4c104a3c9b526da07e
 
 RUN apt-get update && apt-get install -y curl bzip2
 
@@ -15,8 +17,9 @@ RUN curl https://dlsrc.getmonero.org/cli/monero-linux-x64-v$MONERO_VERSION.tar.b
   cp ./monero-x86_64-linux-gnu-v$MONERO_VERSION/monerod . &&\
   rm -r monero-*
 
-FROM ubuntu:18.04
+FROM --platform=linux/amd64 ubuntu:22.04
 
+RUN apt-get update && apt-get install --no-install-recommends -y wget
 RUN useradd -ms /bin/bash monero && mkdir -p /home/monero/.bitmonero && chown -R monero:monero /home/monero/.bitmonero
 USER monero
 WORKDIR /home/monero
@@ -28,8 +31,10 @@ VOLUME /home/monero/.bitmonero
 
 EXPOSE 18080 18081 18089
 
+HEALTHCHECK --interval=30s --timeout=5s CMD wget --no-verbose --tries=1 --spider http://localhost:18081/get_info || exit 
+
+
 
 ENTRYPOINT ["./monerod"]
 CMD ["--config-file=/usr/local/monerod.conf", "--non-interactive"]
-
 

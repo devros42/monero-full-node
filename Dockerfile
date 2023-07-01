@@ -1,6 +1,6 @@
 # Usage: docker run --restart=always -v /var/data/blockchain-xmr:/home/monero/.bitmonero -p 18080:18080 -p 18081:18081 -p 18089:18089 --name=monero-full-node -v /mnt/cache/appdata/monero-node:/usr/local -td devros42/monero-full-node
 
-FROM --platform=linux/amd64 ubuntu:22.04 AS build
+FROM --platform=linux/amd64 ubuntu:22.10 AS build
 LABEL author="devros42" \
       maintainer="devros42"
       

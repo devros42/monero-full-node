@@ -19,7 +19,7 @@ RUN curl https://dlsrc.getmonero.org/cli/monero-linux-x64-v$MONERO_VERSION.tar.b
   cp ./monero-x86_64-linux-gnu-v$MONERO_VERSION/monerod . &&\
   rm -r monero-*
 
-FROM --platform=linux/amd64 ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:22.10
 
 RUN apt-get update && apt-get install --no-install-recommends -y wget
 RUN useradd -ms /bin/bash monero && mkdir -p /home/monero/.bitmonero && chown -R monero:monero /home/monero/.bitmonero

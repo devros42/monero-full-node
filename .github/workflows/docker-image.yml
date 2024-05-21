@@ -1,9 +1,7 @@
 name: Build and Publish Docker Image 
 
 on:
-  edited:
-    branches:
-      - main  # or the branch you want to trigger the action
+  workflow_dispatch:  # Allows manual trigger of the workflow
 
 jobs:
   build:

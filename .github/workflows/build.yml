@@ -1,7 +1,8 @@
 name: Build Docker image
 
 on:
-  push:
+  workflow_dispatch:  # Allows manual trigger of the workflow
+
 
 env:
   REGISTRY: ghcr.io

@@ -1,7 +1,7 @@
 name: Build and Publish Docker Image 
 
 on:
-  push:
+  edited:
     branches:
       - main  # or the branch you want to trigger the action
 

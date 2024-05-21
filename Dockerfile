@@ -1,6 +1,6 @@
 # Usage: docker run --restart=always -v /var/data/blockchain-xmr:/home/monero/.bitmonero -p 18080:18080 -p 18081:18081 -p 18089:18089 --name=monero-full-node -v /mnt/cache/appdata/monero-node:/usr/local -td devros42/monero-full-node
 
-FROM --platform=linux/amd64 ubuntu:22.10 AS build
+FROM --platform=linux/amd64 ubuntu:latest AS build
 LABEL author="devros42" \
       maintainer="devros42"
       
@@ -19,7 +19,7 @@ RUN curl https://dlsrc.getmonero.org/cli/monero-linux-x64-v$MONERO_VERSION.tar.b
   cp ./monero-x86_64-linux-gnu-v$MONERO_VERSION/monerod . &&\
   rm -r monero-*
 
-FROM --platform=linux/amd64 ubuntu:22.10
+FROM --platform=linux/amd64 ubuntu:latest
 
 RUN apt-get update && apt-get install --no-install-recommends -y wget
 RUN useradd -ms /bin/bash monero && mkdir -p /home/monero/.bitmonero && chown -R monero:monero /home/monero/.bitmonero

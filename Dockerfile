@@ -7,7 +7,7 @@ LABEL author="devros42" \
 
 #ENV MONERO_VERSION=0.18.2.2 MONERO_SHA256=186800de18f67cca8475ce392168aabeb5709a8f8058b0f7919d7c693786d56b 
 #ENV MONERO_VERSION=0.18.3.3 MONERO_SHA256=47c7e6b4b88a57205800a2538065a7874174cd087eedc2526bee1ebcce0cc5e3
-ENV MONERO_VERSION=0.18.3.4
+ENV MONERO_VERSION=0.18.3.4 MONERO_SHA256=51ba03928d189c1c11b5379cab17dd9ae8d2230056dc05c872d0f8dba4a87f1d
 ENV MONERO_HASH=51ba03928d189c1c11b5379cab17dd9ae8d2230056dc05c872d0f8dba4a87f1d
 ENV MONERO_DL_URL=https://downloads.getmonero.org/cli/monero-linux-x64-v$MONERO_VERSION.tar.bz2
 ENV MONERO_DL_FILE=monero-v$MONERO_VERSION.tar.bz2
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y curl bzip2
 
 WORKDIR /root
 
-RUN curl https://dlsrc.getmonero.org/cli/monero-linux-x64-v$MONERO_VERSION.tar.bz2 -O &&\
+RUN curl https://downloads.getmonero.org/cli/monero-linux-x64-v$MONERO_VERSION.tar.bz2 -O &&\
   echo "$MONERO_SHA256  monero-linux-x64-v$MONERO_VERSION.tar.bz2" | sha256sum -c - &&\
   tar -xvf monero-linux-x64-v$MONERO_VERSION.tar.bz2 &&\
   rm monero-linux-x64-v$MONERO_VERSION.tar.bz2 &&\

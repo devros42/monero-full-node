@@ -2,7 +2,7 @@
 
 Docker image for a Monero full node, maintained in this fork of
 [kannix/monero-full-node](https://github.com/kannix/monero-full-node).
-It packages the official Linux x64 CLI daemon **0.18.5.1** on Ubuntu 22.04.
+It packages the official Linux x64 CLI daemon **0.18.5.3** on Ubuntu 22.04.
 Only `linux/amd64` is supported; ARM hosts need amd64 emulation.
 
 ## Build and check locally

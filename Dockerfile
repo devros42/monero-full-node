@@ -3,7 +3,7 @@ LABEL author="devros42" \
       maintainer="devros42"
 
 # Linux x64 CLI checksum from https://www.getmonero.org/downloads/hashes.txt
-ENV MONERO_VERSION=0.18.5.1 MONERO_SHA256=22a7dda7b0cb699fdd6b7674c3b4a4465b337cc98a54983523b759e1e7cc9958
+ENV MONERO_VERSION=0.18.5.3 MONERO_SHA256=3333d0e04c9cbe3023e7e2b6dd369c407f36bb8df5b05fb0a19d7685b3d56dfc
 
 RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates curl bzip2 && \
     rm -rf /var/lib/apt/lists/*
